@@ -1,0 +1,6 @@
+﻿{
+  "yamlDataPath": "c:/TEMP_Opensquiggly/docfx_yaml",
+  "xmlOutPath": "c:/TEMP_Opensquiggly/docfx_xml",
+  "xsltFilePath": "../text.xslt",
+  "saveToNamespaceFolders": "true"
+}
