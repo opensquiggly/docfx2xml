@@ -20,6 +20,8 @@ namespace Docfx2xml.Models.CustomXML.Enums
     [XmlEnum("struct")]
     Struct,
     [XmlEnum("Constructor")]
-    Constructor
+    Constructor,
+    [XmlEnum("Namespace")]
+    Namespace
   }
 }

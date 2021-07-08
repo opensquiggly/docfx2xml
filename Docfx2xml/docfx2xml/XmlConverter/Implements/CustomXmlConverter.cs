@@ -16,9 +16,10 @@ namespace Docfx2xml.XmlConverter.Implements
         ? parseResult switch
         {
           InfoType.Class => ToXmlDocumentDoc(XmlMapper.ToClassInfo(data), xsltFilePath),
-          InfoType.Enum => ToXmlDocumentDoc(XmlMapper.ToClassInfo(data), xsltFilePath),
-          InfoType.Interface => ToXmlDocumentDoc(XmlMapper.ToClassInfo(data), xsltFilePath),
-          InfoType.Struct => ToXmlDocumentDoc(XmlMapper.ToClassInfo(data), xsltFilePath),
+          InfoType.Enum => ToXmlDocumentDoc(XmlMapper.ToEnumInfo(data), xsltFilePath),
+          InfoType.Interface => ToXmlDocumentDoc(XmlMapper.ToInterfaceInfo(data), xsltFilePath),
+          InfoType.Struct => ToXmlDocumentDoc(XmlMapper.ToStructInfo(data), xsltFilePath),
+          InfoType.Namespace => ToXmlDocumentDoc(XmlMapper.ToNamespaceInfo(data), xsltFilePath),
           _ => throw new ArgumentOutOfRangeException()
         }
         : throw new XmlException($"unable to parse {nameof(DataInfo)} type: {dataType}");
