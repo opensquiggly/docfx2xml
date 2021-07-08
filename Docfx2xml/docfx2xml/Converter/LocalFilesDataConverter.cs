@@ -13,13 +13,13 @@ namespace Docfx2xml.Converter
   public class LocalFilesDataConverter : IDataConverter
   {
     private readonly ILogger _logger;
-    private readonly IXmlConverter _xmlConverter;
+    private readonly IXmlConverterResolver _xmlConvertResolver;
     private readonly IDataLoader _dataLoader;
 
-    public LocalFilesDataConverter(ILogger logger, IXmlConverter xmlConverter, IDataLoader dataLoader)
+    public LocalFilesDataConverter(ILogger logger, IXmlConverterResolver xmlConvertResolver, IDataLoader dataLoader)
     {
       _logger = logger;
-      _xmlConverter = xmlConverter;
+      _xmlConvertResolver = xmlConvertResolver;
       _dataLoader = dataLoader;
     }
 
@@ -51,7 +51,8 @@ namespace Docfx2xml.Converter
         
         using var readerYaml = new StreamReader(file);
         var yamlData = deserializer.Deserialize<DataInfo>(readerYaml);
-        var xml = _xmlConverter.ConvertToDoc(yamlData, config.XsltFilePath);
+        var xmlConverter = _xmlConvertResolver.Resolve(config.XmlConverterType);
+        var xml = xmlConverter.ConvertToDoc(yamlData, config.XsltFilePath);
         var xmlFileName = Path.GetFileNameWithoutExtension(file);
 
         var namespaceName = yamlData.Items.FirstOrDefault()?.Namespace;

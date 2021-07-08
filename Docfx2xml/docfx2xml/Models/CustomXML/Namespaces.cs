@@ -1,9 +1,9 @@
-﻿namespace Docfx2xml.Models.XML
+﻿namespace Docfx2xml.Models.CustomXML
 {
   public static class Namespaces
   {
     public const string OpenSquiggly = "https://www.opensquiggly.com/";
     
-    public const string OpenSquiggly_Prefix = "os";
+    public const string OpenSquigglyPrefix = "os";
   }
 }

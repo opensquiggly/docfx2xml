@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
-using Docfx2xml.Models.XML;
+using Docfx2xml.Models.CustomXML;
 using YamlDotNet.Serialization;
 
 namespace Docfx2xml.Models
@@ -18,12 +18,13 @@ namespace Docfx2xml.Models
     public List<ItemInfo> Items { get; set; }
 
     [YamlMember(Alias = "references")]
-    [XmlElement(ElementName = "Reference", Namespace = Namespaces.OpenSquiggly, Order = 2)]
+    //[XmlElement(ElementName = "Reference", Namespace = Namespaces.OpenSquiggly, Order = 2)]
+    [XmlIgnore]
     public List<ReferenceInfo> References { get; set; }
 
     public DataInfo()
     {
-      _xmlNamespaces.Add(Namespaces.OpenSquiggly_Prefix, Namespaces.OpenSquiggly);
+      _xmlNamespaces.Add(Namespaces.OpenSquigglyPrefix, Namespaces.OpenSquiggly);
     }
   }
 }

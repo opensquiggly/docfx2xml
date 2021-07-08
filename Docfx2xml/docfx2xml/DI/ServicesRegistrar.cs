@@ -3,6 +3,7 @@ using Docfx2xml.Configuration.Implements;
 using Docfx2xml.Converter;
 using Docfx2xml.Logger;
 using Docfx2xml.XmlConverter;
+using Docfx2xml.XmlConverter.Implements;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Docfx2xml.DI
@@ -12,7 +13,9 @@ namespace Docfx2xml.DI
     public static ServiceProvider RegisterAppServices(this ServiceCollection serviceCollection)
     {
       serviceCollection.AddSingleton<ILogger, ConsoleLogger>();
+      serviceCollection.AddSingleton<IXmlConverterResolver, XmlConverterResolver>();
       serviceCollection.AddSingleton<IXmlConverter, DefaultXmlConverter>();
+      serviceCollection.AddSingleton<IXmlConverter, CustomXmlConverter>();
       serviceCollection.AddSingleton<IDataLoader, LocalFilesDataLoader>();
       serviceCollection.AddSingleton<IConfigDataProviderFactory, ConfigDataProviderFactory>();
       serviceCollection.AddSingleton<IDataConverter, LocalFilesDataConverter>();

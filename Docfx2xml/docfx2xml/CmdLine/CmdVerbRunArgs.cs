@@ -17,5 +17,7 @@ namespace Docfx2xml.CmdLine
     [Option('n', "namespace", Required = false, Default = false, HelpText = "Split xml files in inner folders by namespace")]
     public bool SaveToNamespaceFolders { get; set; }
     
+    [Option('c', "converter", Required = false, Default = "d", HelpText = "Xml converter type, should be 'c' - custom or 'd' - default. Default value is 'd'")]
+    public string XmlConverterType { get; set; }
   }
 }

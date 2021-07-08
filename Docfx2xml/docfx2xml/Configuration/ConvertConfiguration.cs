@@ -1,5 +1,7 @@
 ﻿using System.Xml.Serialization;
+using Docfx2xml.XmlConverter;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Docfx2xml.Configuration
 {
@@ -22,5 +24,10 @@ namespace Docfx2xml.Configuration
     [JsonProperty("saveToNamespaceFolders", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)] 
     [XmlElement(ElementName = "SaveToNamespaceFolders", IsNullable = true)] 
     public bool SaveToNamespaceFolders { get; set; }
+
+    [JsonProperty("xmlConverterType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+    [JsonConverter(typeof(StringEnumConverter))]
+    [XmlElement(ElementName = "XmlConverterType", IsNullable = true)]
+    public XmlConverterType XmlConverterType { get; set; }
   }
 }

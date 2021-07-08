@@ -1,5 +1,5 @@
 ﻿using System.Xml.Serialization;
-using Docfx2xml.Models.XML;
+using Docfx2xml.Models.CustomXML;
 using YamlDotNet.Serialization;
 
 namespace Docfx2xml.Models

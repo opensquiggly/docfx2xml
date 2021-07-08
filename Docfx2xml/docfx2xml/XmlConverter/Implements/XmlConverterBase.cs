@@ -3,11 +3,13 @@ using System.Xml;
 using System.Xml.Serialization;
 using Docfx2xml.Models;
 
-namespace Docfx2xml.XmlConverter
+namespace Docfx2xml.XmlConverter.Implements
 {
-  public class DefaultXmlConverter : IXmlConverter
+  public abstract class XmlConverterBase : IXmlConverter
   {
-    public XmlDocument ConvertToDoc(DataInfo data, string xsltFile)
+    public abstract XmlDocument ConvertToDoc(DataInfo data, string xsltFilePath);
+
+    protected XmlDocument ToXmlDocumentDoc<T>(T data, string xsltFile)
     {
       var ser = new XmlSerializer(data.GetType());
       using var memStm = new MemoryStream();
