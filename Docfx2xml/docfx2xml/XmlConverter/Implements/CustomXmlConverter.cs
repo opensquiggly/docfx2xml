@@ -20,6 +20,7 @@ namespace Docfx2xml.XmlConverter.Implements
           InfoType.Interface => ToXmlDocumentDoc(XmlMapper.ToInterfaceInfo(data), xsltFilePath),
           InfoType.Struct => ToXmlDocumentDoc(XmlMapper.ToStructInfo(data), xsltFilePath),
           InfoType.Namespace => ToXmlDocumentDoc(XmlMapper.ToNamespaceInfo(data), xsltFilePath),
+          InfoType.Delegate => ToXmlDocumentDoc(XmlMapper.ToDelegateInfo(data), xsltFilePath),
           _ => throw new ArgumentOutOfRangeException()
         }
         : throw new XmlException($"unable to parse {nameof(DataInfo)} type: {dataType}");

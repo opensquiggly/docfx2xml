@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
+using Docfx2xml.Models.CustomXML.Enums;
 using YamlDotNet.Serialization;
 
 namespace Docfx2xml.Models.CustomXML.ElementTypes
@@ -10,48 +11,41 @@ namespace Docfx2xml.Models.CustomXML.ElementTypes
     [XmlElement(ElementName = "Name", Order = 1)]
     public string Name { get; set; }
     
-    [XmlElement(ElementName = "Comment", Order = 2)]
-    public string Comment { get; set; }
-    
-    [XmlElement(ElementName = "ParentName", Order = 4)]
-    public string ParentName { get; set; }
-    
-    [XmlArray(ElementName = "ChildrenNames", Order = 5)]
-    [XmlArrayItem(ElementName = "ChildrenName", Type = typeof(string))]
-    public List<string> Children { get; set; }
-    
-    [XmlElement(ElementName = "DisplayNameType", Order = 8)]
+    [XmlElement(ElementName = "NameWithType", Order = 2)]
     public string NameWithType { get; set; }
     
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlElement(ElementName = "FullName", Order = 3)]
+    public string FullName { get; set; }
     
-    [XmlElement(ElementName = "Source", Order = 10)]
-    public Source Source { get; set; }
+    [XmlElement(ElementName = "Assembly", Order = 4)]
+    public string Assembly { get; set; }
     
-    [XmlArray(ElementName = "Assemblies", Order = 11)]
-    [XmlArrayItem(ElementName = "Assembly", Type = typeof(string))]
-    public List<string> Assemblies { get; set; }
-    
-    [XmlElement(ElementName = "Namespace", Order = 12)]
-    public string Namespace { get; set; }
-    
-    [XmlArray(ElementName = "Implements", Order = 15)]
-    [XmlArrayItem(ElementName = "Implement", Type = typeof(string))]
-    public List<string> Implements { get; set; }
-    
-    [XmlElement(ElementName = "Attribute", Order = 17)]
-    public List<AttributeInfo> Attributes { get; set; }
-    
-    [XmlArray(ElementName = "Modifiers", Order = 18)]
-    [XmlArrayItem(ElementName = "Modifier", Type = typeof(string))]
-    public List<string> ModifiersCSharp { get; set; }
-    
-    [XmlElement(ElementName = "Summary", Order = 21)]
+    [XmlElement(ElementName = "Summary", Order = 5)]
     public string Summary { get; set; }
     
-    [XmlArray(ElementName = "Examples", Order = 22)]
+    [XmlElement(ElementName = "Syntax", Order = 6)]
+    public Syntax Syntax { get; set; }
+    
+    [XmlElement(ElementName = "Source", Order = 7)]
+    public Source Source { get; set; }
+
+    [XmlArray(ElementName = "Parameters", Order = 8)]
+    [XmlArrayItem(ElementName = "Parameter", Type = typeof(Parameter))]
+    public List<Parameter> Parameters { get; set; }
+
+    [XmlArray(ElementName = "Remarks", Order = 9)]
+    [XmlArrayItem(ElementName = "Remark", Type = typeof(string))]
+    public List<string> Remarks { get; set; }
+
+    [XmlArray(ElementName = "Examples", Order = 10)]
     [XmlArrayItem(ElementName = "Example", Type = typeof(string))]
-    public List<string> Example { get; set; }
+    public List<string> Examples { get; set; }
+    
+    [XmlArray(ElementName = "Modifiers", Order = 11)]
+    [XmlArrayItem(ElementName = "Modifier", Type = typeof(string))]
+    public List<string> Modifiers { get; set; }
+    
+    [XmlIgnore]
+    public InfoType Type { get; set; }
   }
 }

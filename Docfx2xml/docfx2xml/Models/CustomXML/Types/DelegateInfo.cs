@@ -2,8 +2,8 @@
 
 namespace Docfx2xml.Models.CustomXML.Types
 {
-  [XmlRoot(ElementName = "Namespace", Namespace = Namespaces.OpenSquiggly)]
-  public class NamespaceInfo : BaseInfo
+  [XmlRoot(ElementName = "Delegate", Namespace = Namespaces.OpenSquiggly)]
+  public class DelegateInfo : BaseInfo
   {
     // contains only base info
   }

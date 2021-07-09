@@ -5,23 +5,25 @@ namespace Docfx2xml.Models.CustomXML.Enums
   [XmlType(Namespace = Namespaces.OpenSquiggly)]
   public enum InfoType
   {
-    [XmlEnum("class")]
+    [XmlEnum("Class")]
     Class,
-    [XmlEnum("method")]
+    [XmlEnum("Method")]
     Method,
-    [XmlEnum("enum")]
+    [XmlEnum("Enum")]
     Enum,
-    [XmlEnum("property")]
+    [XmlEnum("Property")]
     Property,
-    [XmlEnum("field")]
+    [XmlEnum("Field")]
     Field,
-    [XmlEnum("interface")]
+    [XmlEnum("Interface")]
     Interface,
-    [XmlEnum("struct")]
+    [XmlEnum("Struct")]
     Struct,
     [XmlEnum("Constructor")]
     Constructor,
     [XmlEnum("Namespace")]
-    Namespace
+    Namespace,
+    [XmlEnum("Delegate")]
+    Delegate
   }
 }

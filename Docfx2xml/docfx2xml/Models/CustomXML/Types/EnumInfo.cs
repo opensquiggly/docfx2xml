@@ -7,10 +7,7 @@ namespace Docfx2xml.Models.CustomXML.Types
   [XmlRoot(ElementName = "Enum", Namespace = Namespaces.OpenSquiggly)]
   public class EnumInfo : BaseInfo
   {
-    [XmlElement(ElementName = "Comment", Order = 1)]
-    public Description Description { get; set; }
-    
-    [XmlArray(ElementName = "Fields", Order = 2)]
+    [XmlArray(ElementName = "Fields", Order = 11)]
     [XmlArrayItem(ElementName = "Field", Type = typeof(Description))]
     public List<Description> Fields { get; set; }
   }

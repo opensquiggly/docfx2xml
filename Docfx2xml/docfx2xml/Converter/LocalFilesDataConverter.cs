@@ -40,6 +40,7 @@ namespace Docfx2xml.Converter
         .IgnoreUnmatchedProperties()
         .Build();
       
+      var xmlConverter = _xmlConvertResolver.Resolve(config.XmlConverterType);
       foreach (var file in files)
       {
         if (Path.GetFileName(file) == "toc.yml")
@@ -51,10 +52,8 @@ namespace Docfx2xml.Converter
         
         using var readerYaml = new StreamReader(file);
         var yamlData = deserializer.Deserialize<DataInfo>(readerYaml);
-        var xmlConverter = _xmlConvertResolver.Resolve(config.XmlConverterType);
         var xml = xmlConverter.ConvertToDoc(yamlData, config.XsltFilePath);
         var xmlFileName = Path.GetFileNameWithoutExtension(file);
-
         var namespaceName = yamlData.Items.FirstOrDefault()?.Namespace;
         _dataLoader.UploadData(xml, config, xmlFileName, namespaceName);
         _logger.LogInformation($"Saved {xmlFileName}.xml");
