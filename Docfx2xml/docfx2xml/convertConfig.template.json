@@ -1,0 +1,8 @@
+{
+  "yamlDataPath": "/path/to/docfx/yaml/input",
+  "xmlOutPath": "/path/to/xml/output",
+  "xsltFilePath": "/path/to/xslt",
+  "saveToNamespaceFolders": "true or false",
+  "xmlConverterType": "default or custom",
+  "buildTocLessTreeFiles": "true or false"
+}
