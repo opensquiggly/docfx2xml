@@ -7,11 +7,12 @@ namespace Docfx2xml.Converter
 {
   public class LocalFilesDataLoader : IDataLoader
   {
-    public void UploadData(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName)
+    public string UploadData(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName)
     {
       var namespaceNameValue = config.SaveToNamespaceFolders ? namespaceName : null;
       var fileName = BuildFileName(config.XmlOutPath, $"{xmlFileName}.xml", namespaceNameValue);
       document.Save(fileName);
+      return fileName;
     }
     
     private string BuildFileName(string xmlOutPath, string xmlDocName, string namespaceName)
@@ -24,7 +25,7 @@ namespace Docfx2xml.Converter
       return fileName;
     }
 
-    public Task UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName) => 
+    public Task<string> UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName) => 
       Task.Run(() => UploadData(document, config, xmlFileName, namespaceName));
   }
 }

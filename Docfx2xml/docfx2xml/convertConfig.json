@@ -3,5 +3,6 @@
   "xmlOutPath": "c:/TEMP_Opensquiggly/docfx_xml",
   "xsltFilePath": "../Templates/Default.xslt",
   "saveToNamespaceFolders": "true",
-  "xmlConverterType": "custom"
+  "xmlConverterType": "custom",
+  "buildTocLessTreeFiles": "true"
 }

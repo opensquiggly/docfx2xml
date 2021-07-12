@@ -6,8 +6,8 @@ namespace Docfx2xml.Converter
 {
   public interface IDataLoader
   {
-    void UploadData(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName);
+    string UploadData(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName);
     
-    Task UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName);
+    Task<string> UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName);
   }
 }

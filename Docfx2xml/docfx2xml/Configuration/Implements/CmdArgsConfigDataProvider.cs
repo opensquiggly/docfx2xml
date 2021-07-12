@@ -28,7 +28,7 @@ namespace Docfx2xml.Configuration.Implements
         YamlDataPath = _cmdVerbRunArgs.YamlFolderPath,
         SaveToNamespaceFolders = _cmdVerbRunArgs.SaveToNamespaceFolders,
         XsltFilePath = _cmdVerbRunArgs.XsltFilePath,
-        XmlConverterType = xmlConverterType 
+        XmlConverterType = xmlConverterType
       };
     }
   }

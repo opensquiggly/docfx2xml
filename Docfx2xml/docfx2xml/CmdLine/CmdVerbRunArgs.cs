@@ -14,10 +14,13 @@ namespace Docfx2xml.CmdLine
     [Option('s', "xsl", Required = false, HelpText = "Path to xslt file using for transform default xml in OpenSquiggly")]
     public string XsltFilePath { get; set; }
     
-    [Option('n', "namespace", Required = false, Default = false, HelpText = "Split xml files in inner folders by namespace")]
+    [Option('n', "namespace", Required = false, Default = true, HelpText = "Split xml files in inner folders by namespace")]
     public bool SaveToNamespaceFolders { get; set; }
     
     [Option('c', "converter", Required = false, Default = "d", HelpText = "Xml converter type, should be 'c' - custom or 'd' - default. Default value is 'd'")]
     public string XmlConverterType { get; set; }
+    
+    [Option('b', "buildtree", Required = false, Default = true, HelpText = "Build additional files for OpenSquiggly tree format type view")]
+    public bool BuildTocLessTreeFiles { get; set; }
   }
 }

@@ -29,5 +29,9 @@ namespace Docfx2xml.Configuration
     [JsonConverter(typeof(StringEnumConverter))]
     [XmlElement(ElementName = "XmlConverterType", IsNullable = true)]
     public XmlConverterType XmlConverterType { get; set; }
+    
+    [JsonProperty("buildTocLessTreeFiles", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)] 
+    [XmlElement(ElementName = "buildTocLessTreeFiles", IsNullable = true)] 
+    public bool BuildTocLessTreeFiles { get; set; }
   }
 }
