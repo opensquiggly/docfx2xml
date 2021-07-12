@@ -15,9 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="convertConfig.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="Xslt\Templates\Default.xslt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
