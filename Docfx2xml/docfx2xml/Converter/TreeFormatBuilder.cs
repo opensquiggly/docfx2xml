@@ -74,7 +74,7 @@ namespace Docfx2xml.Converter
     {
       var directoryInfo = new DirectoryInfo(name);
       var directoryName = directoryInfo.Name;
-      return $"{directoryName}={directoryName.Replace('.', '_')}";
+      return $"{directoryName}={directoryName}";
     } 
   }
 }
