@@ -27,7 +27,7 @@ namespace Docfx2xml.XmlConverter.Implements
       {
         var processingInstruction = document.CreateProcessingInstruction(
           "xml-stylesheet",
-          $"type='text/xsl' href='{xsltFile}'");
+          $"type=\"text/xsl\" href=\"{xsltFile}\"");
         document.InsertAfter(processingInstruction, document.FirstChild);
       }
       
