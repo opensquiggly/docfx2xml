@@ -16,6 +16,7 @@ namespace Docfx2xml.DI
       serviceCollection.AddSingleton<IXmlConverterResolver, XmlConverterResolver>();
       serviceCollection.AddSingleton<DefaultXmlConverter>();
       serviceCollection.AddSingleton<CustomXmlConverter>();
+      serviceCollection.AddSingleton<CustomIgnoreNamespaceConverter>();
       serviceCollection.AddSingleton<ITreeFormatBuilder, TreeFormatBuilder>();
       serviceCollection.AddSingleton<IDataLoader, LocalFilesDataLoader>();
       serviceCollection.AddSingleton<IConfigDataProviderFactory, ConfigDataProviderFactory>();

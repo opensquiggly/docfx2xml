@@ -17,7 +17,7 @@ namespace Docfx2xml.CmdLine
     [Option('n', "namespace", Required = false, Default = true, HelpText = "Split xml files in inner folders by namespace")]
     public bool SaveToNamespaceFolders { get; set; }
     
-    [Option('c', "converter", Required = false, Default = "d", HelpText = "Xml converter type, should be 'c' - custom or 'd' - default. Default value is 'd'")]
+    [Option('c', "converter", Required = false, Default = "d", HelpText = "Xml converter type, should be 'c' - custom, 'd' - default, 'cn' - custom without namespace xml files, Default value is 'd'")]
     public string XmlConverterType { get; set; }
     
     [Option('b', "buildtree", Required = false, Default = true, HelpText = "Build additional files for OpenSquiggly tree format type view")]

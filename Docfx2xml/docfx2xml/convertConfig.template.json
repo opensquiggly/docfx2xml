@@ -3,6 +3,6 @@
   "xmlOutPath": "/path/to/xml/output",
   "xsltFilePath": "/path/to/xslt",
   "saveToNamespaceFolders": "true or false",
-  "xmlConverterType": "default or custom",
+  "xmlConverterType": "default, custom, customIgnoreNamespaces",
   "buildTocLessTreeFiles": "true or false"
 }

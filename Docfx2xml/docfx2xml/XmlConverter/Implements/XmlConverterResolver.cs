@@ -18,6 +18,7 @@ namespace Docfx2xml.XmlConverter.Implements
       {
         XmlConverterType.Default => _serviceProvider.GetService<DefaultXmlConverter>(),
         XmlConverterType.Custom => _serviceProvider.GetService<CustomXmlConverter>(),
+        XmlConverterType.CustomIgnoreNamespaces => _serviceProvider.GetService<CustomIgnoreNamespaceConverter>(),
         _ => _serviceProvider.GetService<DefaultXmlConverter>()
       };
     }

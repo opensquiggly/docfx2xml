@@ -57,6 +57,10 @@ namespace Docfx2xml.Converter
         using var readerYaml = new StreamReader(file);
         var yamlData = deserializer.Deserialize<DataInfo>(readerYaml);
         var xml = xmlConverter.ConvertToDoc(yamlData, config.XsltFilePath);
+        if (xml == null)
+        {
+          continue;
+        }
         var xmlFileName = Path.GetFileNameWithoutExtension(file);
         var namespaceName = yamlData.Items.FirstOrDefault()?.Namespace;
         var fileName = await _dataLoader.UploadDataAsync(xml, config, xmlFileName, namespaceName);

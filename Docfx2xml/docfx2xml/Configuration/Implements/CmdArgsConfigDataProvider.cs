@@ -20,7 +20,8 @@ namespace Docfx2xml.Configuration.Implements
       {
         "d" => XmlConverterType.Default,
         "c" => XmlConverterType.Custom,
-        _ => default
+        "cn" => XmlConverterType.CustomIgnoreNamespaces,
+        _ => XmlConverterType.Default
       };
       return new ConvertConfiguration
       {

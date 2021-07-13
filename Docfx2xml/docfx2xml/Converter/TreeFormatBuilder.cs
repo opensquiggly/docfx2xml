@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Docfx2xml.Configuration;
 using Docfx2xml.Helpers;
 using Docfx2xml.Logger;
@@ -30,7 +30,9 @@ namespace Docfx2xml.Converter
       _logger.LogInformation("Build OpenSquiggly tocLess tree files...");
       var rootFolder = DirectoryHelper.SanitizeDirPath(config.XmlOutPath, true);
       var rootFilePath = CreateTocLessFileIfNotExist(rootFolder);
-      foreach (var filename in fileNames)
+      var fileNamesArray = fileNames.ToArray();
+      Array.Sort(fileNamesArray, StringComparer.InvariantCultureIgnoreCase);
+      foreach (var filename in fileNamesArray)
       {
         var folderName = Path.GetDirectoryName(filename);
         var filePath = CreateTocLessFileIfNotExist(folderName);
@@ -48,6 +50,7 @@ namespace Docfx2xml.Converter
       {
         using var fs = File.CreateText(fileName);
         var subFolders = Directory.GetDirectories(folderPath);
+        Array.Sort(subFolders, StringComparer.InvariantCultureIgnoreCase);
         if (subFolders.Any())
         {
           foreach (var folder in subFolders)
