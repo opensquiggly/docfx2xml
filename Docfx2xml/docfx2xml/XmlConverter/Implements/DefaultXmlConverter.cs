@@ -5,9 +5,7 @@ namespace Docfx2xml.XmlConverter.Implements
 {
   public class DefaultXmlConverter : XmlConverterBase
   {
-    public override XmlDocument ConvertToDoc(DataInfo data, string xsltFile)
-    {
-      return ToXmlDocumentDoc(data, xsltFile);
-    }
+    public override XmlDocument ConvertToDoc(DataInfo data, string xsltFile) => 
+      ToXmlDocumentDoc(data, xsltFile);
   }
 }

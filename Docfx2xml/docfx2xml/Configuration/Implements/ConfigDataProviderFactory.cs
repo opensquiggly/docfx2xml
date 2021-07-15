@@ -4,14 +4,12 @@ namespace Docfx2xml.Configuration.Implements
 {
   public class ConfigDataProviderFactory : IConfigDataProviderFactory
   {
-    public IConfigDataProvider GetDataProvider(ICmdVerb cmdVerb)
-    {
-      return cmdVerb switch
+    public IConfigDataProvider GetDataProvider(ICmdVerb cmdVerb) =>
+      cmdVerb switch
       {
         CmdVerbRunJson json => new JsonFileConfigDataProvider(json.FileName),
         CmdVerbRunArgs args => new CmdArgsConfigDataProvider(args),
         _ => null
       };
-    }
   }
 }

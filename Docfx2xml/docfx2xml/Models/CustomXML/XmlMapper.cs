@@ -13,94 +13,68 @@ namespace Docfx2xml.Models.CustomXML
     public static ClassInfo ToClassInfo(DataInfo data)
     {
       var baseInfo = data.Items.FirstOrDefault();
-      if (baseInfo != null)
+      var result = BuildBaseInfo<ClassInfo>(baseInfo);
+      if (result != null)
       {
-        var result = BuildBaseInfo<ClassInfo>(baseInfo);
-
         var descriptions = data.Items.Skip(1).Select(ToDescription).ToList();
         result.Constructors = descriptions.Where(d => d.Type == InfoType.Constructor).ToList();
         result.Properties = descriptions.Where(d => d.Type == InfoType.Property).ToList();
         result.Fields = descriptions.Where(d => d.Type == InfoType.Field).ToList();
         result.Methods = descriptions.Where(d => d.Type == InfoType.Method).ToList();
-        
-        return result;
       }
-
-      return default;
+      return result;
     }
-    
+
     public static EnumInfo ToEnumInfo(DataInfo data)
     {
       var baseInfo = data.Items.FirstOrDefault();
-      if (baseInfo != null)
+      var result = BuildBaseInfo<EnumInfo>(baseInfo);
+      if (result != null)
       {
-        var result = BuildBaseInfo<EnumInfo>(baseInfo);
-        
         var descriptions = data.Items.Skip(1).Select(ToDescription).ToList();
         result.Fields = descriptions.Where(d => d.Type == InfoType.Field).ToList();
-        
-        return result;
       }
-
-      return default;
+      return result;
     }
-    
+
     public static InterfaceInfo ToInterfaceInfo(DataInfo data)
     {
       var baseInfo = data.Items.FirstOrDefault();
-      if (baseInfo != null)
+      var result = BuildBaseInfo<InterfaceInfo>(baseInfo);
+      if (result != null)
       {
-        var result = BuildBaseInfo<InterfaceInfo>(baseInfo);
-        
         var descriptions = data.Items.Skip(1).Select(ToDescription).ToList();
         result.Methods = descriptions.Where(d => d.Type == InfoType.Method).ToList();
-        
-        return result;
+        result.Properties = descriptions.Where(d => d.Type == InfoType.Property).ToList();
       }
+      return result;
+    }
 
-      return default;
-    }
-    
-    public static NamespaceInfo ToNamespaceInfo(DataInfo data)
-    {
-      var baseInfo = data.Items.FirstOrDefault();
-      return baseInfo != null 
-        ? BuildBaseInfo<NamespaceInfo>(baseInfo) 
-        : default;
-    }
-    
-    public static DelegateInfo ToDelegateInfo(DataInfo data)
-    {
-      var baseInfo = data.Items.FirstOrDefault();
-      return baseInfo != null 
-        ? BuildBaseInfo<DelegateInfo>(baseInfo) 
-        : default;
-    }
-    
+    public static NamespaceInfo ToNamespaceInfo(DataInfo data) => 
+      BuildBaseInfo<NamespaceInfo>(data.Items.FirstOrDefault());
+
+    public static DelegateInfo ToDelegateInfo(DataInfo data) => 
+      BuildBaseInfo<DelegateInfo>(data.Items.FirstOrDefault());
+
     public static StructInfo ToStructInfo(DataInfo data)
     {
       var baseInfo = data.Items.FirstOrDefault();
-      if (baseInfo != null)
+      var result = BuildBaseInfo<StructInfo>(baseInfo);
+      if (result != null)
       {
-        var result = BuildBaseInfo<StructInfo>(baseInfo);
-        
         var descriptions = data.Items.Skip(1).Select(ToDescription).ToList();
         result.Constructors = descriptions.Where(d => d.Type == InfoType.Constructor).ToList();
         result.Properties = descriptions.Where(d => d.Type == InfoType.Property).ToList();
         result.Fields = descriptions.Where(d => d.Type == InfoType.Field).ToList();
         result.Methods = descriptions.Where(d => d.Type == InfoType.Method).ToList();
-        
-        return result;
       }
-
-      return default;
+      return result;
     }
 
-    private static Description ToDescription(ItemInfo info)
-    {
-      return info == null ? default : new Description
+    private static Description ToDescription(ItemInfo info) =>
+      info == null ? default : new Description
       {
-        Name = info.UId,
+        Name = info.Name,
         NameWithType = info.NameWithType,
         FullName = info.FullName,
         Assembly = info.Assemblies?.FirstOrDefault(),
@@ -113,11 +87,9 @@ namespace Docfx2xml.Models.CustomXML
         Examples = info.Example,
         Modifiers = info.ModifiersCSharp
       };
-    }
 
-    private static Source ConvertSource(SourceInfo info)
-    {
-      return info == null ? default : new Source
+    private static Source ConvertSource(SourceInfo info) =>
+      info == null ? default : new Source
       {
         Name = info.Id,
         FilePath = info.Path,
@@ -126,68 +98,54 @@ namespace Docfx2xml.Models.CustomXML
         StartLine = info.StartLine,
         EndLine = info.EndLine
       };
-    }
 
-    private static Syntax ConvertSyntax(SyntaxInfo info)
-    {
-      return info == null ? default : new Syntax
+    private static Syntax ConvertSyntax(SyntaxInfo info) =>
+      info == null ? default : new Syntax
       {
         Content = info.Content,
         Parameters = info.Parameters?.Select(ConvertParameter).ToList() ?? new List<Parameter>(),
         Return = ConvertReturn(info.Return)
       };
-    }
-    
-    private static Return ConvertReturn(ReturnInfo info)
-    {
-      return info == null ? default : new Return
+
+    private static Return ConvertReturn(ReturnInfo info) =>
+      info == null ? default : new Return
       {
         Description = info.Description,
         Type = info.Type
       };
-    }
-    
-    private static Parameter ConvertParameter(ParameterInfo info)
-    {
-      return info == null ? default : new Parameter
+
+    private static Parameter ConvertParameter(ParameterInfo info) =>
+      info == null ? default : new Parameter
       {
         Name = info.Id,
         Description = info.Description,
         Type = info.Type,
         Attributes = info.Attributes?.Select(ConvertAttribute).ToList() ?? new List<Attribute>()
       };
-    }
-    
-    private static Attribute ConvertAttribute(AttributeInfo info)
-    {
-      return info == null ? default : new Attribute
+
+    private static Attribute ConvertAttribute(AttributeInfo info) =>
+      info == null ? default : new Attribute
       {
         Type = info.Type,
         Constructor = info.Ctor,
         Arguments = info.Arguments?.Select(ConvertArgument).ToList() ?? new List<Argument>(),
         NamedArguments = info.NamedArguments?.Select(ConvertArgument).ToList() ?? new List<Argument>()
       };
-    }
-    
-    private static Argument ConvertArgument(ArgumentInfo info)
-    {
-      return info == null ? default : new Argument
+
+    private static Argument ConvertArgument(ArgumentInfo info) =>
+      info == null ? default : new Argument
       {
         Type = info.Type,
         Value = info.Value
       };
-    }
 
-    private static InfoType ParseInfoType(string dataType)
-    {
-      return Enum.TryParse(dataType, true, out InfoType parseResult) 
+    private static InfoType ParseInfoType(string dataType) =>
+      Enum.TryParse(dataType, true, out InfoType parseResult) 
         ? parseResult 
         : throw new ArgumentException($"Unable to parse :{dataType}",nameof(dataType));
-    }
 
-    private static T BuildBaseInfo<T>(ItemInfo baseInfo) where T : BaseInfo, new()
-    {
-      return new T
+    private static T BuildBaseInfo<T>(ItemInfo baseInfo) where T : BaseInfo, new() =>
+      baseInfo == null ? default : new T
       {
         Name = baseInfo.UId,
         NameWithType = baseInfo.NameWithType,
@@ -198,8 +156,8 @@ namespace Docfx2xml.Models.CustomXML
         Syntax = ConvertSyntax(baseInfo.Syntax),
         Assemblies = baseInfo.Assemblies,
         Inheritance = baseInfo.Inheritance,
-        InheritedMembers = baseInfo.Inheritance
+        InheritedMembers = baseInfo.Inheritance,
+        Summary = baseInfo.Summary
       };
-    }
   }
 }

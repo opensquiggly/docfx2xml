@@ -25,28 +25,31 @@ namespace Docfx2xml.Models.CustomXML
     [XmlElement(ElementName = "FullName", Order = 3)]
     public string FullName { get; set; }
     
-    [XmlArray(ElementName = "Languages", Order = 4)]
+    [XmlElement(ElementName = "Summary", Order = 4)]
+    public string Summary { get; set; }
+    
+    [XmlArray(ElementName = "Languages", Order = 5)]
     [XmlArrayItem(ElementName = "Language", Type = typeof(string))]
     public List<string> Languages { get; set; }
     
-    [XmlElement(ElementName = "Namespace", Order = 5)]
+    [XmlElement(ElementName = "Namespace", Order = 6)]
     public string Namespace { get; set; }
     
-    [XmlElement(ElementName = "Comment", Order = 6)]
+    [XmlElement(ElementName = "Comment", Order = 7)]
     public string Comment { get; set; }
     
-    [XmlElement(ElementName = "Syntax", Order = 7)]
+    [XmlElement(ElementName = "Syntax", Order = 8)]
     public Syntax Syntax { get; set; }
     
-    [XmlArray(ElementName = "Assemblies", Order = 8)]
+    [XmlArray(ElementName = "Assemblies", Order = 9)]
     [XmlArrayItem(ElementName = "Assembly", Type = typeof(string))]
     public List<string> Assemblies { get; set; }
     
-    [XmlArray(ElementName = "Inheritances", Order = 9)]
+    [XmlArray(ElementName = "Inheritances", Order = 10)]
     [XmlArrayItem(ElementName = "Inheritance", Type = typeof(string))]
     public List<string> Inheritance { get; set; }
     
-    [XmlArray(ElementName = "InheritedMembers", Order = 10)]
+    [XmlArray(ElementName = "InheritedMembers", Order = 11)]
     [XmlArrayItem(ElementName = "InheritedMember", Type = typeof(string))]
     public List<string> InheritedMembers { get; set; }
   }

@@ -16,7 +16,7 @@ namespace Docfx2xml.Configuration.Implements
 
     protected abstract ConvertConfiguration GetConfigurationImplement();
     
-    private void ValidateConfig(ConvertConfiguration config)
+    private static void ValidateConfig(ConvertConfiguration config)
     {
       if (string.IsNullOrEmpty(config?.XmlOutPath))
       {

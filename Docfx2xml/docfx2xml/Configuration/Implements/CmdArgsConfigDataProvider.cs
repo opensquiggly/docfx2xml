@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Docfx2xml.CmdLine;
 using Docfx2xml.XmlConverter;
 
@@ -16,7 +15,7 @@ namespace Docfx2xml.Configuration.Implements
     
     protected override ConvertConfiguration GetConfigurationImplement()
     {
-      XmlConverterType xmlConverterType = _cmdVerbRunArgs.XmlConverterType switch
+      var xmlConverterType = _cmdVerbRunArgs.XmlConverterType switch
       {
         "d" => XmlConverterType.Default,
         "c" => XmlConverterType.Custom,
@@ -29,7 +28,8 @@ namespace Docfx2xml.Configuration.Implements
         YamlDataPath = _cmdVerbRunArgs.YamlFolderPath,
         SaveToNamespaceFolders = _cmdVerbRunArgs.SaveToNamespaceFolders,
         XsltFilePath = _cmdVerbRunArgs.XsltFilePath,
-        XmlConverterType = xmlConverterType
+        XmlConverterType = xmlConverterType,
+        BuildTocLessTreeFiles = _cmdVerbRunArgs.BuildTocLessTreeFiles
       };
     }
   }

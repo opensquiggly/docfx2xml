@@ -12,15 +12,13 @@ namespace Docfx2xml.XmlConverter.Implements
       _serviceProvider = serviceProvider;
     }
     
-    public IXmlConverter Resolve(XmlConverterType type)
-    {
-      return type switch
+    public IXmlConverter Resolve(XmlConverterType type) =>
+      type switch
       {
         XmlConverterType.Default => _serviceProvider.GetService<DefaultXmlConverter>(),
         XmlConverterType.Custom => _serviceProvider.GetService<CustomXmlConverter>(),
         XmlConverterType.CustomIgnoreNamespaces => _serviceProvider.GetService<CustomIgnoreNamespaceConverter>(),
         _ => _serviceProvider.GetService<DefaultXmlConverter>()
       };
-    }
   }
 }

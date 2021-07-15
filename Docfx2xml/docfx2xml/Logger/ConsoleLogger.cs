@@ -12,7 +12,7 @@ namespace Docfx2xml.Logger
 
     public void LogError(Exception ex) => LogError(ex.ToString());
 
-    private void Log(string msg, ConsoleColor? color = null)
+    private static void Log(string msg, ConsoleColor? color = null)
     {
       if (color.HasValue)
       {
