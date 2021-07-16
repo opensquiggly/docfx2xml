@@ -5,6 +5,20 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>Docfx2xml</AssemblyName>
         <RootNamespace>Docfx2xml</RootNamespace>
+        <Title>Docfx2xml</Title>
+        <Authors>Opensquiggly.com</Authors>
+        <Description>Tool for convert docfx files to xml files</Description>
+        <PackageProjectUrl>Opensquiggly.com</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/opensquiggly/docfx2xml</RepositoryUrl>
+        <PackageReleaseNotes>1.0.0  - tool for convert docfx .yml files to xml files and save to local path</PackageReleaseNotes>
+        <Company>Opensquiggly.com</Company>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <NeutralLanguage>en</NeutralLanguage>
+        
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>docfx2xml</ToolCommandName>
+        <PackageOutputPath>./nuget</PackageOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +30,9 @@
 
     <ItemGroup>
       <None Update="Xslt\Templates\Default.xslt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="convertConfig.template.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
