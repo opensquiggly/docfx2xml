@@ -7,10 +7,10 @@
         <RootNamespace>Docfx2xml</RootNamespace>
         <Title>Docfx2xml</Title>
         <Authors>Opensquiggly.com</Authors>
-        <Description>Tool for convert docfx files to xml files</Description>
+        <Description>Tool for convert docfx files to xml files for Opensquiggly.com</Description>
         <PackageProjectUrl>Opensquiggly.com</PackageProjectUrl>
         <RepositoryUrl>https://github.com/opensquiggly/docfx2xml</RepositoryUrl>
-        <PackageReleaseNotes>1.0.0  - tool for convert docfx .yml files to xml files and save to local path</PackageReleaseNotes>
+        <PackageReleaseNotes>1.0.0  - tool for convert docfx .yml files to xml files and save to local path. Xml files for Opensquiggly.com</PackageReleaseNotes>
         <Company>Opensquiggly.com</Company>
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <FileVersion>1.0.0</FileVersion>
@@ -19,6 +19,10 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>docfx2xml</ToolCommandName>
         <PackageOutputPath>./nuget</PackageOutputPath>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Copyright>Opensquiggly.com</Copyright>
+        <PackageTags>Opensquiggly.com</PackageTags>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,4 +38,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="Licenses\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt"/>
+    </ItemGroup>
+    
 </Project>
