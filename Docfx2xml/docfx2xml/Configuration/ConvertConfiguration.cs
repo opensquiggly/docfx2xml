@@ -6,7 +6,7 @@ using Newtonsoft.Json.Converters;
 namespace Docfx2xml.Configuration
 {
   [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-  [XmlRoot(ElementName = "RepositoryConfiguration")]
+  [XmlRoot(ElementName = "ConvertConfiguration")]
   public class ConvertConfiguration
   {
     [JsonProperty("yamlDataPath", Required = Required.Always)] 

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConvertConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <YamlDataPath>/path/to/docfx/yaml/input</YamlDataPath>
+    <XmlOutPath>/path/to/xml/output</XmlOutPath>
+    <XsltFilePath>/path/to/xslt</XsltFilePath>
+    <SaveToNamespaceFolders>true or false</SaveToNamespaceFolders>
+    <XmlConverterType>default, custom, customIgnoreNamespaces</XmlConverterType>
+    <BuildTocLessTreeFiles>true or false</BuildTocLessTreeFiles>
+</ConvertConfiguration>

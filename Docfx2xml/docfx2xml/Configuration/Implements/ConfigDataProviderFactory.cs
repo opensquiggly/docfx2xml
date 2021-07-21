@@ -9,6 +9,7 @@ namespace Docfx2xml.Configuration.Implements
       {
         CmdVerbRunJson json => new JsonFileConfigDataProvider(json.FileName),
         CmdVerbRunArgs args => new CmdArgsConfigDataProvider(args),
+        CmdVerbRunXml xml => new XmlFileConfigDataProvider(xml.FileName),
         _ => null
       };
   }

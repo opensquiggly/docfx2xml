@@ -10,7 +10,8 @@
         <Description>Tool for convert docfx files to xml files for Opensquiggly.com</Description>
         <PackageProjectUrl>Opensquiggly.com</PackageProjectUrl>
         <RepositoryUrl>https://github.com/opensquiggly/docfx2xml</RepositoryUrl>
-        <PackageReleaseNotes>1.0.0  - tool for convert docfx .yml files to xml files and save to local path. Xml files for Opensquiggly.com</PackageReleaseNotes>
+        <PackageReleaseNotes>1.0.0  - tool for convert docfx .yml files to xml files and save to local path. Xml files for Opensquiggly.com
+1.0.1 - Add xml config data provider, add ConvertConfig.template.xml. Add file logger.</PackageReleaseNotes>
         <Company>Opensquiggly.com</Company>
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <FileVersion>1.0.0</FileVersion>
@@ -23,6 +24,7 @@
         <Copyright>Opensquiggly.com</Copyright>
         <PackageTags>Opensquiggly.com</PackageTags>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="Licenses\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt"/>
+        <None Include="Licenses\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
     </ItemGroup>
     
 </Project>

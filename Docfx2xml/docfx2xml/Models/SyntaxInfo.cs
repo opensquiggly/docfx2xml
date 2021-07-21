@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 using Docfx2xml.Models.CustomXML;
+using Newtonsoft.Json;
 using YamlDotNet.Serialization;
 
 namespace Docfx2xml.Models
