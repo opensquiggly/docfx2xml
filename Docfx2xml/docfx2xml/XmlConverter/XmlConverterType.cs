@@ -2,8 +2,8 @@
 {
   public enum XmlConverterType
   {
-    Default,
-    Custom,
-    CustomIgnoreNamespaces
+    Default = 1,
+    Custom = 2,
+    CustomIgnoreNamespaces = 3
   }
 }

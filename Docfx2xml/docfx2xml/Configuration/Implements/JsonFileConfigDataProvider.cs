@@ -19,7 +19,7 @@ namespace Docfx2xml.Configuration.Implements
         var result = JsonConvert.DeserializeObject<ConvertConfiguration>(File.ReadAllText(_fileName));
         return result;
       }
-      throw new FileNotFoundException(_fileName);
+      throw new FileNotFoundException($"File {_fileName} not found in {nameof(JsonFileConfigDataProvider)}", _fileName);
     }
   }
 }

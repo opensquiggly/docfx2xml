@@ -22,7 +22,7 @@ namespace Docfx2xml.Configuration.Implements
         reader.Close();
         return result;
       }
-      throw new FileNotFoundException(_fileName);
+      throw new FileNotFoundException($"file {_fileName} not found in {nameof(XmlFileConfigDataProvider)}", _fileName);
     }
   }
 }

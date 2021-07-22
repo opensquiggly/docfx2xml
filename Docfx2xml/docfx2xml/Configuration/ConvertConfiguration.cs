@@ -13,7 +13,7 @@ namespace Docfx2xml.Configuration
     [XmlElement(ElementName = "YamlDataPath", IsNullable = false)] 
     public string YamlDataPath { get; set; }
 
-    [JsonProperty("xmlOutPath", Required = Required.Always)] 
+    [JsonProperty("xmlOutPath", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)] 
     [XmlElement(ElementName = "XmlOutPath", IsNullable = false)] 
     public string XmlOutPath { get; set; }
 
@@ -22,16 +22,16 @@ namespace Docfx2xml.Configuration
     public string XsltFilePath { get; set; }
     
     [JsonProperty("saveToNamespaceFolders", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)] 
-    [XmlElement(ElementName = "SaveToNamespaceFolders", IsNullable = true)] 
+    [XmlElement(ElementName = "SaveToNamespaceFolders", IsNullable = false)] 
     public bool SaveToNamespaceFolders { get; set; }
 
     [JsonProperty("xmlConverterType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
     [JsonConverter(typeof(StringEnumConverter))]
-    [XmlElement(ElementName = "XmlConverterType", IsNullable = true)]
+    [XmlElement(ElementName = "XmlConverterType", IsNullable = false)]
     public XmlConverterType XmlConverterType { get; set; }
     
     [JsonProperty("buildTocLessTreeFiles", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)] 
-    [XmlElement(ElementName = "buildTocLessTreeFiles", IsNullable = true)] 
+    [XmlElement(ElementName = "BuildTocLessTreeFiles", IsNullable = false)] 
     public bool BuildTocLessTreeFiles { get; set; }
   }
 }

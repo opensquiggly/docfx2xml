@@ -3,8 +3,8 @@ using Docfx2xml.Configuration;
 
 namespace Docfx2xml.CmdLine
 {
-  [Verb("run_j", HelpText = "Run convert docfx yaml to xml, using json config file(convertConfig.json)")]
-  public class CmdVerbRunJson : ICmdVerb
+  [Verb("init", true, HelpText = "initialize new convertConfig.json file if not exist")]
+  public class CmdVerbInit : ICmdVerb
   {
     [Option('f', "file", Default = ConfigConstants.JsonConfigFileName, Required = false, HelpText = "Config json file name")]
     public string FileName { get; set; }
