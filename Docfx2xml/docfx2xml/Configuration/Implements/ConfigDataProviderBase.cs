@@ -15,7 +15,7 @@ namespace Docfx2xml.Configuration.Implements
     public virtual Task<ConvertConfiguration> GetConfigurationAsync() => Task.Run(GetConfiguration);
 
     protected abstract ConvertConfiguration GetConfigurationImplement();
-    
+
     private static void ValidateConfig(ConvertConfiguration config)
     {
       if (string.IsNullOrEmpty(config?.YamlDataPath))

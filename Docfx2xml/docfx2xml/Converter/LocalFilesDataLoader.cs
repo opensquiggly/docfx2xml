@@ -15,7 +15,10 @@ namespace Docfx2xml.Converter
       return fileName;
     }
     
-    private string BuildFileName(string xmlOutPath, string xmlDocName, string namespaceName)
+    public Task<string> UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName) => 
+      Task.Run(() => UploadData(document, config, xmlFileName, namespaceName));
+    
+    private static string BuildFileName(string xmlOutPath, string xmlDocName, string namespaceName)
     {
       var configPath = DirectoryHelper.SanitizeDirPath(xmlOutPath, true);
       var nameSpaceFolder = DirectoryHelper.SanitizeDirPath(namespaceName, false);
@@ -24,8 +27,5 @@ namespace Docfx2xml.Converter
 
       return fileName;
     }
-
-    public Task<string> UploadDataAsync(XmlDocument document, ConvertConfiguration config, string xmlFileName, string namespaceName) => 
-      Task.Run(() => UploadData(document, config, xmlFileName, namespaceName));
   }
 }

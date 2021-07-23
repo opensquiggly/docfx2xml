@@ -13,6 +13,7 @@ namespace Docfx2xml.DI
     public static ServiceProvider RegisterAppServices(this ServiceCollection serviceCollection)
     {
       serviceCollection.AddSingleton<ILogger, ConsoleLogger>();
+      serviceCollection.AddSingleton<IConfigInputDataBuilder, ConsoleConfigDataBuilder>();
       serviceCollection.AddSingleton<IXmlConverterResolver, XmlConverterResolver>();
       serviceCollection.AddSingleton<DefaultXmlConverter>();
       serviceCollection.AddSingleton<CustomXmlConverter>();

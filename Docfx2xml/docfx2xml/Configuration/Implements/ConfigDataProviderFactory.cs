@@ -1,15 +1,17 @@
-﻿using Docfx2xml.CmdLine;
+﻿using System;
+using Docfx2xml.CmdLine;
 using Docfx2xml.Logger;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Docfx2xml.Configuration.Implements
 {
   public class ConfigDataProviderFactory : IConfigDataProviderFactory
   {
-    private readonly ILogger _logger;
+    private readonly IServiceProvider _serviceProvider;
     
-    public ConfigDataProviderFactory(ILogger logger)
+    public ConfigDataProviderFactory(IServiceProvider serviceProvider)
     {
-      _logger = logger;
+      _serviceProvider = serviceProvider;
     }
     
     public IConfigDataProvider GetDataProvider(ICmdVerb cmdVerb) =>
@@ -18,7 +20,8 @@ namespace Docfx2xml.Configuration.Implements
         CmdVerbRunJson json => new JsonFileConfigDataProvider(json.FileName),
         CmdVerbRunArgs args => new CmdArgsConfigDataProvider(args),
         CmdVerbRunXml xml => new XmlFileConfigDataProvider(xml.FileName),
-        CmdVerbInit init => new ConsoleInputConfigDataProvider(init.FileName, _logger),
+        CmdVerbInit init => new InitializeConfigDataProvider(init.FileName, 
+          _serviceProvider.GetService<ILogger>(), _serviceProvider.GetService<IConfigInputDataBuilder>()),
         _ => null
       };
   }

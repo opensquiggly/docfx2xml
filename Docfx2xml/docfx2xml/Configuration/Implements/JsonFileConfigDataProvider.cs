@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Docfx2xml.Exceptions;
 using Newtonsoft.Json;
 
 namespace Docfx2xml.Configuration.Implements
@@ -19,7 +20,7 @@ namespace Docfx2xml.Configuration.Implements
         var result = JsonConvert.DeserializeObject<ConvertConfiguration>(File.ReadAllText(_fileName));
         return result;
       }
-      throw new FileNotFoundException($"File {_fileName} not found in {nameof(JsonFileConfigDataProvider)}", _fileName);
+      throw new FileNotExistException($"File {_fileName} not found(json)", _fileName);
     }
   }
 }

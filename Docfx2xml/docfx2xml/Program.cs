@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
 using CommandLine.Text;
@@ -25,22 +23,20 @@ namespace Docfx2xml
       try
       {
         await Parser.Default.ParseArguments(args, verbs)
-          .WithNotParsed(errors => HandleParseError(errors, logger))
+          .WithNotParsed(errors => PrintHelp())
           .WithParsedAsync(options => RunOptions(options, serviceProvider));
-      }
-      catch (FileExistException ex)
-      {
-        logger.LogInformation(ex.Message);
-        PrintHelp(verbs);
-      }
-      catch (FileNotFoundException ex)
-      {
-        logger.LogInformation($"file {ex.FileName} not found");
-        PrintHelp(verbs);
       }
       catch (Exception ex)
       {
-        logger.LogError(ex);
+        if (ex is FileNotExistException || ex is FileExistException)
+        {
+          logger.LogInformation(ex.Message);
+          PrintHelp(verbs);
+        }
+        else
+        {
+          logger.LogError(ex);
+        }
       }
     }
 
@@ -67,21 +63,16 @@ namespace Docfx2xml
       stopWatch.Reset();
     }
 
-    private static void HandleParseError(IEnumerable<Error> errors, ILogger logger)
-    {
-      logger.LogInformation(" use --help");
-    }
-
     private static Type[] GetVerbs()
     {
-      return new[] {typeof(CmdVerbInit), typeof(CmdVerbRunJson), typeof(CmdVerbRunXml), typeof(CmdVerbRunArgs) };
+      return new[] {typeof(CmdVerbInit), typeof(CmdVerbRunJson), typeof(CmdVerbRunXml), typeof(CmdVerbRunArgs)};
     }
 
     private static void PrintHelp(Type[] verbs)
     {
       Console.WriteLine("HELP:" + new HelpText().AddVerbs(verbs));
     }
-    
+
     private static void PrintHelp()
     {
       var verbs = GetVerbs();

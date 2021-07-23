@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using Docfx2xml.Exceptions;
 
 namespace Docfx2xml.Configuration.Implements
 {
@@ -22,7 +23,7 @@ namespace Docfx2xml.Configuration.Implements
         reader.Close();
         return result;
       }
-      throw new FileNotFoundException($"file {_fileName} not found in {nameof(XmlFileConfigDataProvider)}", _fileName);
+      throw new FileNotExistException($"File {_fileName} not found(xml)", _fileName);
     }
   }
 }

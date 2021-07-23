@@ -1,59 +1,12 @@
 ﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Docfx2xml.Exceptions;
 using Docfx2xml.Helpers;
-using Docfx2xml.Logger;
 using Docfx2xml.XmlConverter;
-using Newtonsoft.Json;
 
 namespace Docfx2xml.Configuration.Implements
 {
-  public class ConsoleInputConfigDataProvider : ConfigDataProviderBase
+  public class ConsoleConfigDataBuilder : IConfigInputDataBuilder
   {
-    private readonly string _fileName;
-    private readonly ILogger _logger;
-
-    public ConsoleInputConfigDataProvider(string fileName, ILogger logger)
-    {
-      _fileName = fileName;
-      _logger = logger;
-    }
-
-    public override Task<ConvertConfiguration> GetConfigurationAsync() => Task.Run(GetConfiguration);
-
-    public override ConvertConfiguration GetConfiguration()
-    {
-      var config = GetConfigurationImplement();
-      // Skip logic for building data from yml files
-      return null;
-    }
-
-    protected override ConvertConfiguration GetConfigurationImplement()
-    {
-      ValidateFileExist();
-      var config = BuildConfig();
-      SaveJsonFile(config);
-      SaveXmlFile(config);
-      
-      return config;
-    }
-
-    private void ValidateFileExist()
-    {
-      var jsonFileName = Path.GetFileNameWithoutExtension(_fileName) + ".json";
-      var xmlFileName = Path.GetFileNameWithoutExtension(_fileName) + ".xml";
-      if (File.Exists(jsonFileName))
-      {
-        throw new FileExistException($"Can't init. {jsonFileName} already exists", jsonFileName);
-      }
-      if (File.Exists(xmlFileName))
-      {
-        throw new FileExistException($"Can't init. {xmlFileName} already exists", xmlFileName);
-      }
-    }
-    
-    private ConvertConfiguration BuildConfig()
+    public ConvertConfiguration BuildConfig()
     {
       var config = new ConvertConfiguration
       {
@@ -69,19 +22,20 @@ namespace Docfx2xml.Configuration.Implements
       return config;
     }
 
-    private void ConfirmOrChangeConfig(ConvertConfiguration config)
+    private static void ConfirmOrChangeConfig(ConvertConfiguration config)
     {
       while (true)
       {
         Console.WriteLine("Select option number that you want to change, or press 'x' for save config and exit:");
         Console.WriteLine();
-        Console.WriteLine($"1 - {nameof(config.YamlDataPath)}");
-        Console.WriteLine($"2 - {nameof(config.XmlOutPath)}");
-        Console.WriteLine($"3 - {nameof(config.XsltFilePath)}");
-        Console.WriteLine($"4 - {nameof(config.SaveToNamespaceFolders)}");
-        Console.WriteLine($"5 - {nameof(config.BuildTocLessTreeFiles)}");
-        Console.WriteLine($"6 - {nameof(config.XmlConverterType)}");
+        Console.WriteLine($"1 - (REQUIRED): {nameof(config.YamlDataPath)}");
+        Console.WriteLine($"2 - (OPTIONAL): {nameof(config.XmlOutPath)}");
+        Console.WriteLine($"3 - (OPTIONAL): {nameof(config.XsltFilePath)}");
+        Console.WriteLine($"4 - (OPTIONAL): {nameof(config.SaveToNamespaceFolders)}");
+        Console.WriteLine($"5 - (OPTIONAL): {nameof(config.BuildTocLessTreeFiles)}");
+        Console.WriteLine($"6 - (OPTIONAL): {nameof(config.XmlConverterType)}");
         Console.WriteLine("X - SAVE config and exit");
+        
         var input = Console.ReadLine();
         if(input?.ToLower() == "x")
           return;
@@ -189,25 +143,6 @@ namespace Docfx2xml.Configuration.Implements
         }
       }
       return (true, defaultValue);
-    }
-    
-    private void SaveXmlFile(ConvertConfiguration config)
-    {
-      var fileName = Path.GetFileNameWithoutExtension(_fileName) + ".xml";
-      var writer = new System.Xml.Serialization.XmlSerializer(typeof(ConvertConfiguration));
-      using var file = File.Create(fileName);
-      writer.Serialize(file, config);  
-      file.Close();  
-      _logger.LogInformation($"Config xml file is created: {fileName}");
-    }
-
-    private void SaveJsonFile(ConvertConfiguration config)
-    {
-      var fileName = Path.GetFileNameWithoutExtension(_fileName) + ".json";
-      using var file = File.CreateText(fileName);
-      var serializer = new JsonSerializer();
-      serializer.Serialize(file, config);
-      _logger.LogInformation($"Config json file is created: {fileName}");
     }
   }
 }

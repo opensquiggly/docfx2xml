@@ -15,6 +15,7 @@
             1.0.1 - Add xml config data provider, add ConvertConfig.template.xml. Add file logger.
             1.0.2 - Add new cmd verb 'init' for create and save new json and xml config files (if file is not exist), improve exception message for json config file running (when file is not exist)
             1.0.3 - Fix bugs for xml file config.
+            1.0.4 - Improve Dependency Injection, improve Exception handling, fix small bugs. 
         </PackageReleaseNotes>
         <Company>Opensquiggly.com</Company>
         <AssemblyVersion>1.0.0</AssemblyVersion>
@@ -28,7 +29,7 @@
         <Copyright>Opensquiggly.com</Copyright>
         <PackageTags>Opensquiggly.com</PackageTags>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageVersion>1.0.3</PackageVersion>
+        <PackageVersion>1.0.4</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

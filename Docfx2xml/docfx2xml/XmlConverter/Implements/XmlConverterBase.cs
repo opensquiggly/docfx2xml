@@ -9,7 +9,7 @@ namespace Docfx2xml.XmlConverter.Implements
   {
     public abstract XmlDocument ConvertToDoc(DataInfo data, string xsltFilePath);
 
-    protected XmlDocument ToXmlDocumentDoc<T>(T data, string xsltFile)
+    protected static XmlDocument ToXmlDocumentDoc<T>(T data, string xsltFile)
     {
       var ser = new XmlSerializer(data.GetType());
       using var memStm = new MemoryStream();
